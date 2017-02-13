@@ -1,0 +1,25 @@
+{
+    "name": "orkhanahmadov/laravel-az-sms-sender",
+    "description": "Laravel SMS Sender for Azerbaijani SMS providers",
+    "type": "library",
+    "homepage": "https://github.com/orkhanahmadov/laravel-az-sms-sender",
+    "keywords": ["azerbaijan", "sms api", "msm.az", "mobis.az"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Orkhan Ahmadov",
+            "email": "ahmadov90@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orkhanahmadov\\LaravelAzSmsSender\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "guzzlehttp/guzzle": "^6.2"
+    }
+}
