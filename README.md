@@ -53,19 +53,18 @@ SmsSender::send($number, $message);
 
 To send bulk message to multiple numbers you need to give array of numbers to $number argument, like:
 ```php
-[994502223344, 994505558866, ..., ...]
+SmsSender::send([994502223344, 994505558866, ..., ...], "This is bulk message for all numbers");
 ```
 
 To send individual messages to different numbers you need to give array of numbers and messages to $number where key is number and value is message. Method will ignore $message argument so it can be skipped.
 
 $number:
 ```php
-[
-    994552223344 => "This is messag for 994552223344",
-    994507775533 => "This is messag for 994507775533",
-    ...,
+SmsSender::send([
+    994552223344 => "This is message for 994552223344",
+    994507775533 => "This is message for 994507775533",
     ...
-]
+]);
 ```
 ### Config
 You can dump config files to your root `config` directory with artisan command:
