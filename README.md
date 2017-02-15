@@ -58,7 +58,6 @@ SmsSender::send([994502223344, 994505558866, ..., ...], "This is bulk message fo
 
 To send individual messages to different numbers you need to give array of numbers and messages to $number where key is number and value is message. Method will ignore $message argument so it can be skipped.
 
-$number:
 ```php
 SmsSender::send([
     994552223344 => "This is message for 994552223344",
@@ -82,3 +81,4 @@ MIT
 
  - Report method to check sent SMS statuses (automatic status check maybe?)
  - Balance method to check current balance
+ - Better exception handling
