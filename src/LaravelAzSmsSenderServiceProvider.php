@@ -18,7 +18,7 @@ class LaravelAzSmsSenderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/Config' => config_path('az-sms-sender'),
+            __DIR__ . '/config' => config_path('az-sms-sender'),
         ]);
 
         $this->loadMigrationsFrom(__DIR__ . '/Migration');
@@ -32,11 +32,11 @@ class LaravelAzSmsSenderServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/config/main.php', 'az-sms-sender-main'
+            __DIR__ . '/Config/main.php', 'az-sms-sender-main'
         );
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/providers.php', 'az-sms-sender-providers'
+            __DIR__ . '/Config/providers.php', 'az-sms-sender-providers'
         );
 
         $this->app->bind('laravelazsmssender', function () {

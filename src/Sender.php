@@ -25,7 +25,7 @@ class Sender
      *
      * @param array|string $arrayOrNumber
      * @param bool|string $text
-     * @return array|false
+     * @return mixed
      */
     public function send($arrayOrNumber, $text = false)
     {
@@ -48,7 +48,7 @@ class Sender
      *
      * @param array|string $arrayOrNumber
      * @param bool|string $text
-     * @return object
+     * @return mixed
      */
     private function msmProvider($arrayOrNumber, $text = false)
     {

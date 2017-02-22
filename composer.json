@@ -1,6 +1,6 @@
 {
     "name": "orkhanahmadov/laravel-az-sms-sender",
-    "description": "Laravel SMS Sender for Azerbaijani SMS providers",
+    "description": "Laravel 5 SMS Sender for Azerbaijani SMS providers",
     "type": "library",
     "homepage": "https://github.com/orkhanahmadov/laravel-az-sms-sender",
     "keywords": ["azerbaijan", "sms api", "msm.az", "mobis.az"],
