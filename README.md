@@ -21,7 +21,7 @@ Orkhanahmadov\LaravelAzSmsSender\LaravelAzSmsSenderServiceProvider::class,
 Add this line to your aliases list (`app/config.app`):
 
 ```php
-'LaravelAzSmsSender' => Orkhanahmadov\LaravelAzSmsSender\Facade\LaravelAzSmsSender::class,
+'SmsSender' => Orkhanahmadov\LaravelAzSmsSender\Facade\SmsSender::class,
 ```
 
 Lastly you need to add following lines to your `.env` file and fill their values:
@@ -46,20 +46,20 @@ php artisan migrate
 ### Usage
 To send SMS message anywhere in your app you can call:
 ```php
-LaravelAzSmsSender::send($number, $message);
+SmsSender::send($number, $message);
 ```
   - $number - recipient's phone number
   - $message - SMS message
 
 To send bulk message to multiple numbers you need to give array of numbers to $number argument, like:
 ```php
-LaravelAzSmsSender::send([994502223344, 994505558866, ..., ...], "This is bulk message for all numbers");
+SmsSender::send([994502223344, 994505558866, ..., ...], "This is bulk message for all numbers");
 ```
 
 To send individual messages to different numbers you need to give array of numbers and messages to $number where key is number and value is message. Method will ignore $message argument so it can be skipped.
 
 ```php
-LaravelAzSmsSender::send([
+SmsSender::send([
     994552223344 => "This is message for 994552223344",
     994507775533 => "This is message for 994507775533",
     ...

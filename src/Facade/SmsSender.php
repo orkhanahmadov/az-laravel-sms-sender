@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
  * Class LaravelAzSmsSender
  * @package Orkhanahmadov\LaravelAzSmsSender\Facade
  */
-class LaravelAzSmsSender extends Facade {
+class SmsSender extends Facade {
     /**
      * @return string
      */
