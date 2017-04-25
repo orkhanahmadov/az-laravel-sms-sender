@@ -60,18 +60,17 @@ class Sender
         $client->addAttribute("pwd",  config('az-sms-sender-main.pwd'));
         $client->addAttribute("from", config('az-sms-sender-main.from'));
 
-
         $recipients = [];
 
         // single sms
         if (!is_array($arrayOrNumber) && $text)
         {
             $insert = $this->xml->addChild("INSERT");
-            $insert->addAttribute("to", $arrayOrNumber);
+            $insert->addAttribute("to", preg_replace('/\D/', "", $arrayOrNumber));
             $insert->addAttribute("text", $text);
 
             array_push($recipients, [
-                "number" => $arrayOrNumber,
+                "number" => preg_replace('/\D/', "", $arrayOrNumber),
                 "message" => $text
             ]);
         }
@@ -86,7 +85,7 @@ class Sender
                 $insertMsg->addChild("TO", $number);
 
                 array_push($recipients, [
-                    "number" => $number,
+                    "number" => preg_replace('/\D/', "", $number),
                     "message" => $text
                 ]);
             }
@@ -97,11 +96,11 @@ class Sender
         {
             foreach ($arrayOrNumber as $number => $text) {
                 $insert = $this->xml->addChild("INSERT");
-                $insert->addAttribute("to", $number);
+                $insert->addAttribute("to", preg_replace('/\D/', "", $number));
                 $insert->addAttribute("text", $text);
 
                 array_push($recipients, [
-                    "number" => $number,
+                    "number" => preg_replace('/\D/', "", $number),
                     "message" => $text
                 ]);
             }
@@ -152,7 +151,7 @@ class Sender
 
             $head->addChild('isbulk', 'false');
             $body = $this->xml->addChild('body');
-            $body->addChild('msisdn', $arrayOrNumber);
+            $body->addChild('msisdn', preg_replace('/\D/', "", $arrayOrNumber));
             $body->addChild('message', $text);
 
             array_push($recipients, [
@@ -185,7 +184,7 @@ class Sender
 
             foreach ($arrayOrNumber as $number => $text) {
                 $body = $this->xml->addChild('body');
-                $body->addChild('msisdn', $number);
+                $body->addChild('msisdn', preg_replace('/\D/', "", $number));
                 $body->addChild('message', $text);
 
                 array_push($recipients, [
