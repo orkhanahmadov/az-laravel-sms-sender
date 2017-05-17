@@ -13,6 +13,6 @@ class SentSms extends Model
     ];
 
     public function recipients() {
-        return $this->hasMany('Orkhanahmadov\LaravelAzSmsSender\Model\SentSmsNumber');
+        return $this->hasMany(SentSmsNumber::class);
     }
 }

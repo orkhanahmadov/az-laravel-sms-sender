@@ -82,10 +82,12 @@ class Sender
             $insertMsg->addAttribute("text", $text);
 
             foreach ($arrayOrNumber as $number) {
+                $number = preg_replace('/\D/', "", $number);
+
                 $insertMsg->addChild("TO", $number);
 
                 array_push($recipients, [
-                    "number" => preg_replace('/\D/', "", $number),
+                    "number" => $number,
                     "message" => $text
                 ]);
             }
@@ -95,12 +97,14 @@ class Sender
         elseif ($this->isAssociativeArray($arrayOrNumber))
         {
             foreach ($arrayOrNumber as $number => $text) {
+                $number = preg_replace('/\D/', "", $number);
+
                 $insert = $this->xml->addChild("INSERT");
-                $insert->addAttribute("to", preg_replace('/\D/', "", $number));
+                $insert->addAttribute("to", $number);
                 $insert->addAttribute("text", $text);
 
                 array_push($recipients, [
-                    "number" => preg_replace('/\D/', "", $number),
+                    "number" => $number,
                     "message" => $text
                 ]);
             }
@@ -148,10 +152,11 @@ class Sender
         // single sms
         if (!is_array($arrayOrNumber) && $text)
         {
+            $arrayOrNumber = preg_replace('/\D/', "", $arrayOrNumber);
 
             $head->addChild('isbulk', 'false');
             $body = $this->xml->addChild('body');
-            $body->addChild('msisdn', preg_replace('/\D/', "", $arrayOrNumber));
+            $body->addChild('msisdn', $arrayOrNumber);
             $body->addChild('message', $text);
 
             array_push($recipients, [
@@ -167,8 +172,10 @@ class Sender
             $head->addChild('bulkmessage', $text);
 
             foreach ($arrayOrNumber as $number) {
+                $number = preg_replace('/\D/', "", $number);
+
                 $body = $this->xml->addChild('body');
-                $body->addChild('msisdn', preg_replace('/\D/', "", $number));
+                $body->addChild('msisdn', $number);
 
                 array_push($recipients, [
                     "number" => $number,
@@ -183,8 +190,10 @@ class Sender
             $head->addChild('isbulk', 'false');
 
             foreach ($arrayOrNumber as $number => $text) {
+                $number = preg_replace('/\D/', "", $number);
+
                 $body = $this->xml->addChild('body');
-                $body->addChild('msisdn', preg_replace('/\D/', "", $number));
+                $body->addChild('msisdn', $number);
                 $body->addChild('message', $text);
 
                 array_push($recipients, [
@@ -210,7 +219,7 @@ class Sender
     }
 
     /**
-     * Function handles response data sent from API
+     * Function handles response data sent back from API
      *
      * @param array $recipients
      * @param string $result
@@ -222,29 +231,21 @@ class Sender
 
         $collectResult = [
             "provider" => config("az-sms-sender-main.provider"),
-            "task_id" => $resultArray->STATUS["id"] ?: $resultArray->body->taskid,
-            "response_code" => $resultArray->STATUS["res"] ?: $resultArray->head->responsecode,
+            "task_id" => (int) $resultArray->STATUS["id"] ?: (int) $resultArray->body->taskid,
+            "response_code" => (int) $resultArray->STATUS["res"] ?: (int) $resultArray->head->responsecode,
             "recipients" => $recipients
         ];
 
-
         if (config("az-sms-sender-main.use_db")) {
-            $sentSms = SentSms::create($collectResult);
-
             $sentSmsNumber = [];
 
-            foreach ($recipients as $recipient) {
-                $recipient["sent_sms_id"] = $sentSms->id;
-                array_push($sentSmsNumber, $recipient);
-            }
+            foreach ($recipients as $recipient)
+                array_push($sentSmsNumber, new SentSmsNumber($recipient));
 
-            $sentSms->numbers = $sentSmsNumber;
-
-            SentSmsNumber::insert($sentSmsNumber);
+            SentSms::create($collectResult)->recipients()->saveMany($sentSmsNumber);
         }
 
         return $collectResult;
-
     }
 
 
