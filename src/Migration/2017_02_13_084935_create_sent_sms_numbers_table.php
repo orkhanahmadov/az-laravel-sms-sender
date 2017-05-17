@@ -16,7 +16,7 @@ class CreateSentSmsNumbersTable extends Migration
         Schema::create('sent_sms_numbers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger("sent_sms_id");
-            $table->string("number");
+            $table->bigInteger("number");
             $table->string("message");
             $table->timestamps();
         });
