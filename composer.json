@@ -17,9 +17,20 @@
             "Orkhanahmadov\\LaravelAzSmsSender\\": "src/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php": ">=5.6.4",
         "guzzlehttp/guzzle": "^6.2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Orkhanahmadov\\LaravelAzSmsSender\\LaravelAzSmsSenderServiceProvider"
+            ],
+
+            "aliases": {
+                "SmsSender": "Orkhanahmadov\\LaravelAzSmsSender\\Facade\\SmsSender"
+            }
+        }
     }
 }
