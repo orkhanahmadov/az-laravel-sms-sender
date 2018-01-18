@@ -143,7 +143,7 @@ class Sender
         $head->addChild('login', config('az-sms-sender-main.user'));
         $head->addChild('password', config('az-sms-sender-main.pwd'));
         $head->addChild('title', config('az-sms-sender-main.from'));
-        $head->addChild('scheduled', null); // TODO: scheduled sms
+        $head->addChild('scheduled', 'NOW'); // TODO: scheduled sms
         $head->addChild('controlid', microtime());
 
 
