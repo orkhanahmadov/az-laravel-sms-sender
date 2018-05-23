@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateSentSmsNumbersTable extends Migration
 {
@@ -15,9 +15,9 @@ class CreateSentSmsNumbersTable extends Migration
     {
         Schema::create('sent_sms_numbers', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger("sent_sms_id");
-            $table->bigInteger("number");
-            $table->string("message");
+            $table->unsignedInteger('sent_sms_id');
+            $table->bigInteger('number');
+            $table->string('message');
             $table->timestamps();
         });
     }

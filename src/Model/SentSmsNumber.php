@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class SentSmsNumber extends Model
 {
     protected $fillable = [
-        "number",
-        "message"
+        'number',
+        'message',
     ];
 
-    public function sent() {
+    public function sent()
+    {
         return $this->belongsTo(SentSms::class);
     }
 }

@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class SentSms extends Model
 {
     protected $fillable = [
-        "provider",
-        "task_id",
-        "response_code"
+        'provider',
+        'task_id',
+        'response_code',
     ];
 
-    public function recipients() {
+    public function recipients()
+    {
         return $this->hasMany(SentSmsNumber::class);
     }
 }

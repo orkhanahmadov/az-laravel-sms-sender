@@ -5,14 +5,15 @@ namespace Orkhanahmadov\LaravelAzSmsSender\Facade;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class LaravelAzSmsSender
- * @package Orkhanahmadov\LaravelAzSmsSender\Facade
+ * Class LaravelAzSmsSender.
  */
-class SmsSender extends Facade {
+class SmsSender extends Facade
+{
     /**
      * @return string
      */
-    protected static function getFacadeAccessor() {
+    protected static function getFacadeAccessor()
+    {
         return 'laravelazsmssender';
     }
 }
