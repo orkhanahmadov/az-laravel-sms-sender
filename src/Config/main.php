@@ -6,5 +6,5 @@ return [
     'pwd'       => env('SMS_API_PASSWORD'),
     'from'      => env('SMS_API_SENDER_NAME'),
 
-    'use_db'    => env('SMS_API_USE_DB')
+    'use_db'    => env('SMS_API_USE_DB'),
 ];

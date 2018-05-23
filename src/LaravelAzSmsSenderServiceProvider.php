@@ -5,8 +5,7 @@ namespace Orkhanahmadov\LaravelAzSmsSender;
 use Illuminate\Support\ServiceProvider;
 
 /**
- * Class LaravelAzSmsSenderServiceProvider
- * @package Orkhanahmadov\LaravelAzSmsSender
+ * Class LaravelAzSmsSenderServiceProvider.
  */
 class LaravelAzSmsSenderServiceProvider extends ServiceProvider
 {
@@ -18,10 +17,10 @@ class LaravelAzSmsSenderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config' => config_path('az-sms-sender'),
+            __DIR__.'/config' => config_path('az-sms-sender'),
         ]);
 
-        $this->loadMigrationsFrom(__DIR__ . '/Migration');
+        $this->loadMigrationsFrom(__DIR__.'/Migration');
     }
 
     /**
@@ -32,15 +31,15 @@ class LaravelAzSmsSenderServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__ . '/Config/main.php', 'az-sms-sender-main'
+            __DIR__.'/Config/main.php', 'az-sms-sender-main'
         );
 
         $this->mergeConfigFrom(
-            __DIR__ . '/Config/providers.php', 'az-sms-sender-providers'
+            __DIR__.'/Config/providers.php', 'az-sms-sender-providers'
         );
 
         $this->app->bind('laravelazsmssender', function () {
-            return new \Orkhanahmadov\LaravelAzSmsSender\Sender;
+            return new \Orkhanahmadov\LaravelAzSmsSender\Sender();
         });
     }
 }
